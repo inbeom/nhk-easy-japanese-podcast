@@ -13,5 +13,8 @@
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
     "podcast": "^0.2.2"
+  },
+  "engines": {
+    "node": "6.2.1"
   }
 }
