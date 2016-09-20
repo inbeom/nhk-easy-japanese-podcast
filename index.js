@@ -30,14 +30,16 @@ app.get('/feed.xml', (req, res, next) => {
     $('.dl-list-inner').each((_, element) => {
       $element = $(element)
 
-      feed.item({
-        title: $element.find('.le-link dl dt').text(),
-        description: $element.find('.le-link dl dd').text(),
-        url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
-        enclosure:{
-          url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}`
-        }
-      })
+      if (!$element.hasClass('set-dl')) {
+        feed.item({
+          title: $element.find('.le-link dl dt').text(),
+          description: $element.find('.le-link dl dd').text(),
+          url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
+          enclosure:{
+            url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}`
+          }
+        })
+      }
     })
 
     res.set('Content-Type', 'text/xml')
