@@ -33,7 +33,10 @@ app.get('/feed.xml', (req, res, next) => {
       feed.item({
         title: $element.find('.le-link dl dt').text(),
         description: $element.find('.le-link dl dd').text(),
-        url: $element.find('.dl-mp3 a').attr('href')
+        url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
+        enclosure:{
+          url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}`
+        }
       })
     })
 
