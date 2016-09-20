@@ -4,6 +4,7 @@
   "description": "Podcast with complete coverage of NHK World Easy Japanese lessons",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Inbeom Hwang",
