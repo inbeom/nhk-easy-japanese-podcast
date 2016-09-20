@@ -1,0 +1,17 @@
+{
+  "name": "nhk-easy-japanese-podcast",
+  "version": "0.0.1",
+  "description": "Podcast with complete coverage of NHK World Easy Japanese lessons",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Inbeom Hwang",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
+    "podcast": "^0.2.2"
+  }
+}
