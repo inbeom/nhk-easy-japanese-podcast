@@ -68,24 +68,24 @@ function composeFeed (feedAttributes, pageBody) {
   const feed = new Podcast(feedAttributes)
   const $ = cheerio.load(pageBody)
 
-  $('.dl-list-inner').each((_, element) => {
-    $element = $(element)
+  $('.dl-list-inner').each(
+    (_, element) => {
+      $element = $(element)
 
-    if (!$element.hasClass('set-dl')) {
-      feed.item({
-        title: $element.find('.le-link dl dt').text(),
-        description: $element.find('.le-link dl dd').text(),
-        url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
-        enclosure:{
-          url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}`
-        },
-        itunesAuthor: feedAttributes.author,
-        itunesExplicit: false,
-        itunesSummary: $element.find('.le-link dl dd').text(),
-        itunesDuration: 600
-      })
+      if (!$element.hasClass('set-dl')) {
+        feed.item({
+          title: $element.find('.le-link dl dt').text(),
+          description: $element.find('.le-link dl dd').text(),
+          url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
+          enclosure: { url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}` },
+          itunesAuthor: feedAttributes.author,
+          itunesExplicit: false,
+          itunesSummary: $element.find('.le-link dl dd').text(),
+          itunesDuration: 600
+        })
+      }
     }
-  })
+  )
 
-    return feed
+  return feed
 }
