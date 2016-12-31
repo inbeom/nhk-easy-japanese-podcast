@@ -68,8 +68,8 @@ function composeFeed (feedAttributes, pageBody) {
   const feed = new Podcast(feedAttributes)
   const $ = cheerio.load(pageBody)
 
-  $('.dl-list-inner').each(
-    (_, element) => {
+  $('.dl-list-inner').toArray().reverse().forEach(
+    (element) => {
       $element = $(element)
 
       if (!$element.hasClass('set-dl')) {
