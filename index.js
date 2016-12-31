@@ -1,10 +1,10 @@
 require('isomorphic-fetch')
 
-let Podcast = require('podcast')
-let cheerio = require('cheerio')
-let express = require('express')
+const Podcast = require('podcast')
+const cheerio = require('cheerio')
+const express = require('express')
 
-let app = express()
+const app = express()
 
 app.get('/ko/feed.xml', (req, res, next) => {
   fetch('http://www.nhk.or.jp/lesson/korean/download/')
@@ -65,8 +65,8 @@ app.get('/en/feed.xml', (req, res, next) => {
 app.listen(process.env.PORT || 3000)
 
 function composeFeed (feedAttributes, pageBody) {
-  let feed = new Podcast(feedAttributes)
-  let $ = cheerio.load(pageBody)
+  const feed = new Podcast(feedAttributes)
+  const $ = cheerio.load(pageBody)
 
   $('.dl-list-inner').each((_, element) => {
     $element = $(element)
