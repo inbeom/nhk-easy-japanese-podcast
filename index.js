@@ -6,32 +6,6 @@ let express = require('express')
 
 let app = express()
 
-function composeFeed (feedAttributes, pageBody) {
-  let feed = new Podcast(feedAttributes)
-  let $ = cheerio.load(pageBody)
-
-  $('.dl-list-inner').each((_, element) => {
-    $element = $(element)
-
-    if (!$element.hasClass('set-dl')) {
-      feed.item({
-        title: $element.find('.le-link dl dt').text(),
-        description: $element.find('.le-link dl dd').text(),
-        url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
-        enclosure:{
-          url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}`
-        },
-        itunesAuthor: feedAttributes.author,
-        itunesExplicit: false,
-        itunesSummary: $element.find('.le-link dl dd').text(),
-        itunesDuration: 600
-      })
-    }
-  })
-
-  return feed
-}
-
 app.get('/ko/feed.xml', (req, res, next) => {
   fetch('http://www.nhk.or.jp/lesson/korean/download/')
   .then((rsp) => rsp.text())
@@ -83,3 +57,29 @@ app.get('/en/feed.xml', (req, res, next) => {
 })
 
 app.listen(process.env.PORT || 3000)
+
+function composeFeed (feedAttributes, pageBody) {
+  let feed = new Podcast(feedAttributes)
+  let $ = cheerio.load(pageBody)
+
+  $('.dl-list-inner').each((_, element) => {
+    $element = $(element)
+
+    if (!$element.hasClass('set-dl')) {
+      feed.item({
+        title: $element.find('.le-link dl dt').text(),
+        description: $element.find('.le-link dl dd').text(),
+        url: `http://www.nhk.or.jp${$element.find('.le-link').attr('href')}`,
+        enclosure:{
+          url: `http://www.nhk.or.jp${$element.find('.dl-mp3 a').attr('href')}`
+        },
+        itunesAuthor: feedAttributes.author,
+        itunesExplicit: false,
+        itunesSummary: $element.find('.le-link dl dd').text(),
+        itunesDuration: 600
+      })
+    }
+  })
+
+  return feed
+}
