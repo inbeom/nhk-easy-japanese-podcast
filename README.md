@@ -41,6 +41,11 @@ Navigate:
 $ curl http://localhost:3000/en/feed.xml
 ```
 
+## Available languages
+
+  - [English](https://nhk-world-easy-japanese.herokuapp.com/en/feed.xml): `/en/feed.xml`
+  - [Korean](https://nhk-world-easy-japanese.herokuapp.com/ko/feed.xml): `/ko/feed.xml`
+
 ## Things to do
 
   - Integrating download link and/or text representation of non-verbal learning
